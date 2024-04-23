@@ -12,6 +12,7 @@ import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
 import org.springframework.stereotype.Service;
 
+import java.util.UUID;
 import java.util.concurrent.CompletableFuture;
 
 @Service
@@ -27,7 +28,7 @@ public class KafkaAvroProducer {
     * */
         public void send(Employee employee){
             CompletableFuture<SendResult<String, Employee>> sentObject
-                    = kafkaTemplate.send(topicName, employee);
+                    = kafkaTemplate.send(topicName, UUID.randomUUID().toString(), employee);
             sentObject.whenComplete((result,ex)->{
                 if(ex==null){
                     System.out.println("sent message:[" + employee+
