@@ -1,0 +1,5 @@
+topic:
+  name: ameda-avro
+
+server:
+  port: 8888
